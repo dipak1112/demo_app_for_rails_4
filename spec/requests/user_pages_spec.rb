@@ -22,7 +22,7 @@ describe "User Pages" do
       it { should have_selector('div.pagination') }
 
       it "should list each user" do
-        User.pagination(page: 1).each do |user|
+        User.paginate(page: 1).each do |user|
           expect(page).to have_selector('li', text: user.name)
         end
       end
@@ -55,7 +55,7 @@ describe "User Pages" do
   end
 
   describe "profile page" do
-  	let(:user) {FactoryGirl.create(:user)}
+  	let(:user) { FactoryGirl.create(:user)}
   	before { visit user_path(user)}
 
   	it {should have_content(user.name)}
