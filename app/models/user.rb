@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	validates_confirmation_of :password, if: lambda {|m| m.password.present? }
 	
 	## Relationships
-	has_many :microposts
+	has_many :microposts, dependent: :destroy
 
 	before_create :create_remember_token
 
@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
 		Digest::SHA1.hexdigest(token.to_s)
 	end
 	
+	def feed
+		#micropost.where("user_id = ?", id)
+		microposts
+	end
+
 	private
 
 	def create_remember_token
