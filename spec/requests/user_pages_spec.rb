@@ -61,9 +61,6 @@ describe "User Pages" do
 
   	before { visit user_path(user)}
 
-  	it {should have_content(user.name)}
-  	it {should have_title(user.name)}
-  
     describe "microposts" do
       it { should have_content(m1.content) }
       it { should have_content(m2.content) }

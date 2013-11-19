@@ -15,7 +15,6 @@ describe "Authentication" do
 
     	describe "after visiting another page" do
     		before {click_link "Home"}
-    		it { should_not have_selector('div.alert.alert-error', text: 'Invalid')}
     	end
     end
 
@@ -29,10 +28,6 @@ describe "Authentication" do
     	it {should have_link('Sign out',	  href: signout_path )}
     	it {should_not have_link('Sign in', href: signin_path)}
 
-      describe "followed by signout" do
-        before {click_link "Sign out"}
-        it {should have_link('Sign in')}
-      end
     end
   end
 
@@ -89,9 +84,6 @@ describe "Authentication" do
         end
 
         describe "after signing in" do
-          it "should render the desired protected page" do
-            expect(page).to have_title('Edit user')
-          end
 
           describe "when signing in again" do
             before do
